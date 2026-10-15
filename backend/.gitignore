@@ -1,0 +1,23 @@
+# ── Dependências ────────────────────────────────────────────────────────────
+node_modules/
+
+# ── Variáveis de ambiente e segredos ────────────────────────────────────────
+# Nunca commitar o .env real — use .env.example como referência
+.env
+.env.local
+.env.*.local
+
+# ── Build TypeScript ─────────────────────────────────────────────────────────
+dist/
+
+# ── Prisma — cliente gerado (regenerado via prisma generate) ─────────────────
+# As migrations SÃO versionadas (não ignorar migrations/)
+node_modules/.prisma/
+
+# ── Logs ────────────────────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+
+# ── Sistema operacional ──────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

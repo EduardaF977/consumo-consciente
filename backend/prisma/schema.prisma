@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id           Int        @id @default(autoincrement())
+  nome         String
+  email        String     @unique
+  senha        String
+  dataCadastro DateTime   @default(now())
+  consumos     Consumo[]
+
+  @@map("usuarios")
+}
+
+model TipoConsumo {
+  id           Int       @id @default(autoincrement())
+  nome         String    @unique
+  unidadeMedida String
+  consumos     Consumo[]
+  dicas        Dica[]
+
+  @@map("tipos_consumo")
+}
+
+model Consumo {
+  id              Int             @id @default(autoincrement())
+  quantidade      Float
+  periodo         String          // formato: "YYYY-MM"
+  valorPago       Float?
+  dataRegistro    DateTime        @default(now())
+  usuarioId       Int
+  tipoConsumoId   Int
+  usuario         Usuario         @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  tipoConsumo     TipoConsumo     @relation(fields: [tipoConsumoId], references: [id])
+  analise         AnaliseConsumo?
+
+  @@map("consumos")
+}
+
+model AnaliseConsumo {
+  id                Int      @id @default(autoincrement())
+  consumoCalculado  Float
+  mediaConsumo      Float?
+  variacaoConsumo   Float?
+  classificacao     String?
+  observacao        String?
+  dataAnalise       DateTime @default(now())
+  consumoId         Int      @unique
+  consumo           Consumo  @relation(fields: [consumoId], references: [id], onDelete: Cascade)
+  dicas             Dica[]   @relation("AnaliseConsumoToDica")
+
+  @@map("analises_consumo")
+}
+
+model Dica {
+  id              Int             @id @default(autoincrement())
+  titulo          String
+  descricao       String
+  categoria       String          // "Agua", "Energia", "Geral"
+  nivelRelevancia String?         // "Alta", "Media", "Baixa"
+  tipoConsumoId   Int?
+  tipoConsumo     TipoConsumo?    @relation(fields: [tipoConsumoId], references: [id])
+  analises        AnaliseConsumo[] @relation("AnaliseConsumoToDica")
+
+  @@map("dicas")
+}

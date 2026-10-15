@@ -1,0 +1,36 @@
+# ── Dependências ────────────────────────────────────────────────────────────
+node_modules/
+
+# ── Variáveis de ambiente e segredos ────────────────────────────────────────
+# Nunca commitar arquivos .env — use .env.example como referência
+.env
+.env.local
+.env.*.local
+
+# ── Builds e arquivos gerados ────────────────────────────────────────────────
+dist/
+build/
+
+# ── Cache Vite ───────────────────────────────────────────────────────────────
+.vite/
+
+# ── Prisma — cliente gerado (regenerado via prisma generate) ─────────────────
+# As migrations SÃO versionadas intencionalmente (não ignorar migrations/)
+node_modules/.prisma/
+
+# ── Logs ────────────────────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Sistema operacional ──────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Editores ────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
