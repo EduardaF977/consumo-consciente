@@ -171,34 +171,6 @@ Você também pode criar uma conta nova diretamente pela tela de cadastro.
 - **Responsividade** — sidebar fixa no desktop, menu hambúrguer no mobile
 
 ---
-
-## Endpoints da API
-
-Todos os endpoints abaixo (exceto `/auth/*` e `/dicas`) exigem o header:
-```
-Authorization: Bearer <token>
-```
-
-| Método | Rota                    | Descrição                              |
-|--------|-------------------------|----------------------------------------|
-| POST   | /api/auth/registrar     | Criar conta                            |
-| POST   | /api/auth/login         | Autenticar e obter token               |
-| GET    | /api/consumos           | Listar consumos (filtros opcionais)    |
-| POST   | /api/consumos           | Registrar consumo + gerar análise      |
-| GET    | /api/consumos/:id       | Obter consumo com análise              |
-| PUT    | /api/consumos/:id       | Editar consumo e recalcular análise    |
-| DELETE | /api/consumos/:id       | Excluir consumo                        |
-| GET    | /api/consumos/tipos     | Listar tipos de consumo                |
-| GET    | /api/dashboard          | Dados do dashboard (`?periodo=YYYY-MM`)|
-| GET    | /api/graficos           | Dados dos gráficos (`?meses=12`)       |
-| GET    | /api/dicas              | Listar dicas (`?categoria=Agua`)       |
-| GET    | /api/perfil             | Obter perfil do usuário                |
-| PUT    | /api/perfil             | Atualizar nome/e-mail                  |
-| PUT    | /api/perfil/senha       | Alterar senha                          |
-| GET    | /api/health             | Health check do servidor               |
-
----
-
 ## Observações
 
 - Cada usuário visualiza exclusivamente seus próprios registros.
